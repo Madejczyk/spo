@@ -72,77 +72,84 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <div className="headerLoginForm">
-                    Create Your Free Account
-                </div>
+            <div id="loginForm">
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <div>
-                        <div>First Name</div>
-                        <input
-                            name="firstName"
-                            type="text"
-                            value={this.state.firstName}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                        {this.state.firstName == "" ? (<div className="required">This field is required</div> ) : (<div></div>)}
+                    <div className="headerLoginForm">
+                        Create Your Free Account
                     </div>
 
-                    <div>
-                        <div>Last Name</div>
-                        <input
-                            name="lastName"
-                            type="text"
-                            value={this.state.lastName}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                        {this.state.lastName == "" ? (<div className="required">This field is required</div> ) : (<div></div>)}
-                    </div>
+                    <div className="contentLoginForm">
+                        <div className="loginField">
+                            First Name<br/>
+                            <input
+                                className="textBoxField"
+                                name="firstName"
+                                type="text"
+                                value={this.state.firstName}
+                                onChange={this.handleChange.bind(this)}
+                            />
+                            {this.state.firstName == "" ? (<div className="required">This field is required</div> ) : (<div></div>)}
+                        </div>
 
-                    <div>
-                        <div>Username</div>
-                        <input
-                            name="username"
-                            type="text"
-                            value={this.state.username}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                        {this.state.username == "" ? (<div className="required">This field is required</div> ) : (<div></div>)}
-                    </div>
+                        <div className="loginField">
+                            Last Name<br/>
+                            <input
+                                className="textBoxField"
+                                name="lastName"
+                                type="text"
+                                value={this.state.lastName}
+                                onChange={this.handleChange.bind(this)}
+                            />
+                            {this.state.lastName == "" ? (<div className="required">This field is required</div> ) : (<div></div>)}
+                        </div>
 
-                    <div>
-                        <div>Password</div>
-                        <input
-                            name="password"
-                            type="text"
-                            value={this.state.password}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                        {this.state.password == "" ? (
-                            <div className="required">This field is required</div>
-                        ) : (
-                            <div className="belowField">At least 8 characters</div>
-                        )}
-                    </div>
+                        <div className="loginField">
+                            Username<br/>
+                            <input
+                                className="textBoxField"
+                                name="username"
+                                type="text"
+                                value={this.state.username}
+                                onChange={this.handleChange.bind(this)}
+                            />
+                            {this.state.username == "" ? (<div className="required">This field is required</div> ) : (<div></div>)}
+                        </div>
 
-                    <div>
-                        <div>Email</div>
-                        <input
-                            name="email"
-                            type="email"
-                            value={this.state.email}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                        {this.state.email == "" ? (
-                            <div className="required">This field is required</div>
-                        ) : (
-                            <div className="belowField">An activation link will be sent to this mail</div>
-                        )}
-                    </div>
+                        <div className="loginField">
+                            Password<br/>
+                            <input
+                                className="textBoxField"
+                                name="password"
+                                type="text"
+                                value={this.state.password}
+                                onChange={this.handleChange.bind(this)}
+                            />
+                            {this.state.password == "" ? (
+                                <div className="required">This field is required</div>
+                            ) : (
+                                <div className="belowField">At least 8 characters</div>
+                            )}
+                        </div>
 
-                    <div className="footerLoginForm">
-                        By clicking Submit, I agree that I have read and accepted the <a>Terms and Conditions</a>
-                        <input
+                        <div className="loginField">
+                            Email<br/>
+                            <input
+                                className="textBoxField"
+                                name="email"
+                                type="email"
+                                value={this.state.email}
+                                onChange={this.handleChange.bind(this)}
+                            />
+                            {this.state.email == "" ? (
+                                <div className="required">This field is required</div>
+                            ) : (
+                                <div className="belowField">An activation link will be sent to this mail</div>
+                            )}
+                        </div>
+                        <div className="footerLoginForm">
+                            By clicking Submit, I agree that I have read and accepted the <br/><a>Terms and Conditions</a>.
+                        </div>
+                        <input id="loginSubmit"
                             type="submit"
                             value="Submit"
                         />

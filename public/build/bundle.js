@@ -21301,8 +21301,8 @@ var Login = function (_Component) {
 
             if (!onlyLettersReg.test(this.state.lastName)) err += 'Last Name must contains only letters.\n';
 
-            var onlySmallLettersAndNumbers = /[a-z](\d?|_?|\.?)+$/;
-            if (!onlySmallLettersAndNumbers.test(this.state.username)) err += 'Username must contains only lower letters, numbers.\n';
+            var reg = /[a-z](\d?|_?|\.?)+$/;
+            if (!reg.test(this.state.username)) err += 'Username must contains only lower letters. May contains numbers, ".", "_".\n';
 
             if (this.state.password.length < 8) err += 'Password must be at least 8 characters, but is only ' + this.state.password.length + '.\n';
 
@@ -21320,133 +21320,129 @@ var Login = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                null,
-                _react2.default.createElement(
-                    'div',
-                    { className: 'headerLoginForm' },
-                    'Create Your Free Account'
-                ),
+                { id: 'loginForm' },
                 _react2.default.createElement(
                     'form',
                     { onSubmit: this.handleSubmit.bind(this) },
                     _react2.default.createElement(
                         'div',
-                        null,
-                        _react2.default.createElement(
-                            'div',
-                            null,
-                            'First Name'
-                        ),
-                        _react2.default.createElement('input', {
-                            name: 'firstName',
-                            type: 'text',
-                            value: this.state.firstName,
-                            onChange: this.handleChange.bind(this)
-                        }),
-                        this.state.firstName == "" ? _react2.default.createElement(
-                            'div',
-                            { className: 'required' },
-                            'This field is required'
-                        ) : _react2.default.createElement('div', null)
+                        { className: 'headerLoginForm' },
+                        'Create Your Free Account'
                     ),
                     _react2.default.createElement(
                         'div',
-                        null,
+                        { className: 'contentLoginForm' },
                         _react2.default.createElement(
                             'div',
-                            null,
-                            'Last Name'
+                            { className: 'loginField' },
+                            'First Name',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', {
+                                className: 'textBoxField',
+                                name: 'firstName',
+                                type: 'text',
+                                value: this.state.firstName,
+                                onChange: this.handleChange.bind(this)
+                            }),
+                            this.state.firstName == "" ? _react2.default.createElement(
+                                'div',
+                                { className: 'required' },
+                                'This field is required'
+                            ) : _react2.default.createElement('div', null)
                         ),
-                        _react2.default.createElement('input', {
-                            name: 'lastName',
-                            type: 'text',
-                            value: this.state.lastName,
-                            onChange: this.handleChange.bind(this)
-                        }),
-                        this.state.lastName == "" ? _react2.default.createElement(
-                            'div',
-                            { className: 'required' },
-                            'This field is required'
-                        ) : _react2.default.createElement('div', null)
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
                         _react2.default.createElement(
                             'div',
-                            null,
-                            'Username'
+                            { className: 'loginField' },
+                            'Last Name',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', {
+                                className: 'textBoxField',
+                                name: 'lastName',
+                                type: 'text',
+                                value: this.state.lastName,
+                                onChange: this.handleChange.bind(this)
+                            }),
+                            this.state.lastName == "" ? _react2.default.createElement(
+                                'div',
+                                { className: 'required' },
+                                'This field is required'
+                            ) : _react2.default.createElement('div', null)
                         ),
-                        _react2.default.createElement('input', {
-                            name: 'username',
-                            type: 'text',
-                            value: this.state.username,
-                            onChange: this.handleChange.bind(this)
-                        }),
-                        this.state.username == "" ? _react2.default.createElement(
-                            'div',
-                            { className: 'required' },
-                            'This field is required'
-                        ) : _react2.default.createElement('div', null)
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
                         _react2.default.createElement(
                             'div',
-                            null,
-                            'Password'
+                            { className: 'loginField' },
+                            'Username',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', {
+                                className: 'textBoxField',
+                                name: 'username',
+                                type: 'text',
+                                value: this.state.username,
+                                onChange: this.handleChange.bind(this)
+                            }),
+                            this.state.username == "" ? _react2.default.createElement(
+                                'div',
+                                { className: 'required' },
+                                'This field is required'
+                            ) : _react2.default.createElement('div', null)
                         ),
-                        _react2.default.createElement('input', {
-                            name: 'password',
-                            type: 'text',
-                            value: this.state.password,
-                            onChange: this.handleChange.bind(this)
-                        }),
-                        this.state.password == "" ? _react2.default.createElement(
-                            'div',
-                            { className: 'required' },
-                            'This field is required'
-                        ) : _react2.default.createElement(
-                            'div',
-                            { className: 'belowField' },
-                            'At least 8 characters'
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
                         _react2.default.createElement(
                             'div',
-                            null,
-                            'Email'
+                            { className: 'loginField' },
+                            'Password',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', {
+                                className: 'textBoxField',
+                                name: 'password',
+                                type: 'text',
+                                value: this.state.password,
+                                onChange: this.handleChange.bind(this)
+                            }),
+                            this.state.password == "" ? _react2.default.createElement(
+                                'div',
+                                { className: 'required' },
+                                'This field is required'
+                            ) : _react2.default.createElement(
+                                'div',
+                                { className: 'belowField' },
+                                'At least 8 characters'
+                            )
                         ),
-                        _react2.default.createElement('input', {
-                            name: 'email',
-                            type: 'email',
-                            value: this.state.email,
-                            onChange: this.handleChange.bind(this)
-                        }),
-                        this.state.email == "" ? _react2.default.createElement(
-                            'div',
-                            { className: 'required' },
-                            'This field is required'
-                        ) : _react2.default.createElement(
-                            'div',
-                            { className: 'belowField' },
-                            'An activation link will be sent to this mail'
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'footerLoginForm' },
-                        'By clicking Submit, I agree that I have read and accepted the ',
                         _react2.default.createElement(
-                            'a',
-                            null,
-                            'Terms and Conditions'
+                            'div',
+                            { className: 'loginField' },
+                            'Email',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', {
+                                className: 'textBoxField',
+                                name: 'email',
+                                type: 'email',
+                                value: this.state.email,
+                                onChange: this.handleChange.bind(this)
+                            }),
+                            this.state.email == "" ? _react2.default.createElement(
+                                'div',
+                                { className: 'required' },
+                                'This field is required'
+                            ) : _react2.default.createElement(
+                                'div',
+                                { className: 'belowField' },
+                                'An activation link will be sent to this mail'
+                            )
                         ),
-                        _react2.default.createElement('input', {
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'footerLoginForm' },
+                            'By clicking Submit, I agree that I have read and accepted the ',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                'Terms and Conditions'
+                            ),
+                            '.'
+                        ),
+                        _react2.default.createElement('input', { id: 'loginSubmit',
                             type: 'submit',
                             value: 'Submit'
                         })
