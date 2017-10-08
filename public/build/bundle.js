@@ -21236,11 +21236,15 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//import PropTypes from 'prop-types'
 
 var Login = function (_Component) {
     _inherits(Login, _Component);
@@ -21248,22 +21252,214 @@ var Login = function (_Component) {
     function Login() {
         _classCallCheck(this, Login);
 
-        return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
+
+        _this.state = {
+            firstName: '',
+            lastName: '',
+            username: '',
+            password: '',
+            email: ''
+        };
+        return _this;
     }
 
     _createClass(Login, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            //Nothing
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(event) {
+            this.onValueChange(event.target.value, event.target.name);
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(event) {
+            var error = this.getErrorMessage();
+            if (error != "") {
+                alert(error);
+            } else {
+                alert(JSON.stringify(this.state));
+                this.state.firstName = "";
+            }
+
+            event.preventDefault();
+        }
+    }, {
+        key: 'onValueChange',
+        value: function onValueChange(value, attr) {
+            this.setState(_defineProperty({}, attr, value));
+        }
+    }, {
+        key: 'getErrorMessage',
+        value: function getErrorMessage() {
+            var err = "";
+            var onlyLettersReg = /^[a-z\d]+$/;
+            if (!onlyLettersReg.test(this.state.firstName)) err = 'First Name must contains only letters.\n';
+
+            if (!onlyLettersReg.test(this.state.lastName)) err += 'Last Name must contains only letters.\n';
+
+            var onlySmallLettersAndNumbers = /[a-z](\d?|_?|\.?)+$/;
+            if (!onlySmallLettersAndNumbers.test(this.state.username)) err += 'Username must contains only lower letters, numbers.\n';
+
+            if (this.state.password.length < 8) err += 'Password must be at least 8 characters, but is only ' + this.state.password.length + '.\n';
+
+            if (!this.validMail(this.state.email)) err += 'Invalid email.\n';
+            return err;
+        }
+    }, {
+        key: 'validMail',
+        value: function validMail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
                 null,
-                'Login'
+                _react2.default.createElement(
+                    'div',
+                    { className: 'headerLoginForm' },
+                    'Create Your Free Account'
+                ),
+                _react2.default.createElement(
+                    'form',
+                    { onSubmit: this.handleSubmit.bind(this) },
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            'First Name'
+                        ),
+                        _react2.default.createElement('input', {
+                            name: 'firstName',
+                            type: 'text',
+                            value: this.state.firstName,
+                            onChange: this.handleChange.bind(this)
+                        }),
+                        this.state.firstName == "" ? _react2.default.createElement(
+                            'div',
+                            { className: 'required' },
+                            'This field is required'
+                        ) : _react2.default.createElement('div', null)
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            'Last Name'
+                        ),
+                        _react2.default.createElement('input', {
+                            name: 'lastName',
+                            type: 'text',
+                            value: this.state.lastName,
+                            onChange: this.handleChange.bind(this)
+                        }),
+                        this.state.lastName == "" ? _react2.default.createElement(
+                            'div',
+                            { className: 'required' },
+                            'This field is required'
+                        ) : _react2.default.createElement('div', null)
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            'Username'
+                        ),
+                        _react2.default.createElement('input', {
+                            name: 'username',
+                            type: 'text',
+                            value: this.state.username,
+                            onChange: this.handleChange.bind(this)
+                        }),
+                        this.state.username == "" ? _react2.default.createElement(
+                            'div',
+                            { className: 'required' },
+                            'This field is required'
+                        ) : _react2.default.createElement('div', null)
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            'Password'
+                        ),
+                        _react2.default.createElement('input', {
+                            name: 'password',
+                            type: 'text',
+                            value: this.state.password,
+                            onChange: this.handleChange.bind(this)
+                        }),
+                        this.state.password == "" ? _react2.default.createElement(
+                            'div',
+                            { className: 'required' },
+                            'This field is required'
+                        ) : _react2.default.createElement(
+                            'div',
+                            { className: 'belowField' },
+                            'At least 8 characters'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            'Email'
+                        ),
+                        _react2.default.createElement('input', {
+                            name: 'email',
+                            type: 'email',
+                            value: this.state.email,
+                            onChange: this.handleChange.bind(this)
+                        }),
+                        this.state.email == "" ? _react2.default.createElement(
+                            'div',
+                            { className: 'required' },
+                            'This field is required'
+                        ) : _react2.default.createElement(
+                            'div',
+                            { className: 'belowField' },
+                            'An activation link will be sent to this mail'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'footerLoginForm' },
+                        'By clicking Submit, I agree that I have read and accepted the ',
+                        _react2.default.createElement(
+                            'a',
+                            null,
+                            'Terms and Conditions'
+                        ),
+                        _react2.default.createElement('input', {
+                            type: 'submit',
+                            value: 'Submit'
+                        })
+                    )
+                )
             );
         }
     }]);
 
     return Login;
 }(_react.Component);
+
+//Proptypes
 
 exports.default = Login;
 
