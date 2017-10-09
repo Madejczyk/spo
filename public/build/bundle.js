@@ -21259,7 +21259,8 @@ var Login = function (_Component) {
             lastName: '',
             username: '',
             password: '',
-            email: ''
+            email: '',
+            checkedField: []
         };
         return _this;
     }
@@ -21278,19 +21279,51 @@ var Login = function (_Component) {
         key: 'handleSubmit',
         value: function handleSubmit(event) {
             var error = this.getErrorMessage();
-            if (error != "") {
+            if (error != "" || this.state.checkedField.length < 5) {
+                var fieldArray = ["firstName", "lastName", "username", "password", "email"];
+                var copy = Object.assign([], this.state.checkedField);
+
+                for (var i = 0; i < fieldArray.length; i++) {
+                    if (!copy.includes(fieldArray[i])) {
+                        copy.push(fieldArray[i]);
+                        this.setState({
+                            checkedField: copy
+                        });
+                    }
+                }
+                /*fieldArray.forEach(function(element){
+                    if (! copy.includes(element))
+                    {
+                        copy.push(element)
+                        this.setState({
+                            checkedField: copy
+                        })
+                    }
+                })*/
+                event.preventDefault();
                 alert(error);
             } else {
                 alert(JSON.stringify(this.state));
                 this.state.firstName = "";
+                this.state.lastName = "";
+                this.state.username = "";
+                this.state.password = "";
+                this.state.email = "";
+                event.preventDefault();
             }
-
-            event.preventDefault();
         }
     }, {
         key: 'onValueChange',
         value: function onValueChange(value, attr) {
-            this.setState(_defineProperty({}, attr, value));
+            if (this.state.checkedField.includes(attr)) {
+                this.setState(_defineProperty({}, attr, value));
+            } else {
+                var _setState2;
+
+                var copy = Object.assign([], this.state.checkedField);
+                copy.push(attr);
+                this.setState((_setState2 = {}, _defineProperty(_setState2, attr, value), _defineProperty(_setState2, 'checkedField', copy), _setState2));
+            }
         }
     }, {
         key: 'getErrorMessage',
@@ -21338,13 +21371,13 @@ var Login = function (_Component) {
                             'First Name',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: this.state.firstName == "" ? "textBoxFieldRequired" : "textBoxField",
+                                className: this.state.firstName == "" && this.state.checkedField.includes("firstName") ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'firstName',
                                 type: 'text',
                                 value: this.state.firstName,
                                 onChange: this.handleChange.bind(this)
                             }),
-                            this.state.firstName == "" ? _react2.default.createElement(
+                            this.state.firstName == "" && this.state.checkedField.includes("firstName") ? _react2.default.createElement(
                                 'div',
                                 { className: 'required' },
                                 'This field is required'
@@ -21356,13 +21389,13 @@ var Login = function (_Component) {
                             'Last Name',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: this.state.lastName == "" ? "textBoxFieldRequired" : "textBoxField",
+                                className: this.state.lastName == "" && this.state.checkedField.includes("lastName") ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'lastName',
                                 type: 'text',
                                 value: this.state.lastName,
                                 onChange: this.handleChange.bind(this)
                             }),
-                            this.state.lastName == "" ? _react2.default.createElement(
+                            this.state.lastName == "" && this.state.checkedField.includes("lastName") ? _react2.default.createElement(
                                 'div',
                                 { className: 'required' },
                                 'This field is required'
@@ -21374,13 +21407,13 @@ var Login = function (_Component) {
                             'Username',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: this.state.username == "" ? "textBoxFieldRequired" : "textBoxField",
+                                className: this.state.username == "" && this.state.checkedField.includes("username") ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'username',
                                 type: 'text',
                                 value: this.state.username,
                                 onChange: this.handleChange.bind(this)
                             }),
-                            this.state.username == "" ? _react2.default.createElement(
+                            this.state.username == "" && this.state.checkedField.includes("username") ? _react2.default.createElement(
                                 'div',
                                 { className: 'required' },
                                 'This field is required'
@@ -21392,13 +21425,13 @@ var Login = function (_Component) {
                             'Password',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: this.state.password == "" ? "textBoxFieldRequired" : "textBoxField",
+                                className: this.state.password == "" && this.state.checkedField.includes("password") ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'password',
                                 type: 'text',
                                 value: this.state.password,
                                 onChange: this.handleChange.bind(this)
                             }),
-                            this.state.password == "" ? _react2.default.createElement(
+                            this.state.password == "" && this.state.checkedField.includes("password") ? _react2.default.createElement(
                                 'div',
                                 { className: 'required' },
                                 'This field is required'
@@ -21414,13 +21447,13 @@ var Login = function (_Component) {
                             'Email',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: this.state.email == "" ? "textBoxFieldRequired" : "textBoxField",
+                                className: this.state.email == "" && this.state.checkedField.includes("email") ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'email',
                                 type: 'email',
                                 value: this.state.email,
                                 onChange: this.handleChange.bind(this)
                             }),
-                            this.state.email == "" ? _react2.default.createElement(
+                            this.state.email == "" && this.state.checkedField.includes("email") ? _react2.default.createElement(
                                 'div',
                                 { className: 'required' },
                                 'This field is required'
