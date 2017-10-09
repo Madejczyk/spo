@@ -21338,7 +21338,7 @@ var Login = function (_Component) {
                             'First Name',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: 'textBoxField',
+                                className: this.state.firstName == "" ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'firstName',
                                 type: 'text',
                                 value: this.state.firstName,
@@ -21356,7 +21356,7 @@ var Login = function (_Component) {
                             'Last Name',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: 'textBoxField',
+                                className: this.state.lastName == "" ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'lastName',
                                 type: 'text',
                                 value: this.state.lastName,
@@ -21374,7 +21374,7 @@ var Login = function (_Component) {
                             'Username',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: 'textBoxField',
+                                className: this.state.username == "" ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'username',
                                 type: 'text',
                                 value: this.state.username,
@@ -21392,7 +21392,7 @@ var Login = function (_Component) {
                             'Password',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: 'textBoxField',
+                                className: this.state.password == "" ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'password',
                                 type: 'text',
                                 value: this.state.password,
@@ -21414,7 +21414,7 @@ var Login = function (_Component) {
                             'Email',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement('input', {
-                                className: 'textBoxField',
+                                className: this.state.email == "" ? "textBoxFieldRequired" : "textBoxField",
                                 name: 'email',
                                 type: 'email',
                                 value: this.state.email,

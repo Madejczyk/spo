@@ -82,7 +82,7 @@ class Login extends Component {
                         <div className="loginField">
                             First Name<br/>
                             <input
-                                className="textBoxField"
+                                className={this.state.firstName == "" ? ("textBoxFieldRequired") : ("textBoxField")}
                                 name="firstName"
                                 type="text"
                                 value={this.state.firstName}
@@ -94,7 +94,7 @@ class Login extends Component {
                         <div className="loginField">
                             Last Name<br/>
                             <input
-                                className="textBoxField"
+                                className={this.state.lastName == "" ? ("textBoxFieldRequired") : ("textBoxField")}
                                 name="lastName"
                                 type="text"
                                 value={this.state.lastName}
@@ -106,7 +106,7 @@ class Login extends Component {
                         <div className="loginField">
                             Username<br/>
                             <input
-                                className="textBoxField"
+                                className={this.state.username == "" ? ("textBoxFieldRequired") : ("textBoxField")}
                                 name="username"
                                 type="text"
                                 value={this.state.username}
@@ -118,7 +118,7 @@ class Login extends Component {
                         <div className="loginField">
                             Password<br/>
                             <input
-                                className="textBoxField"
+                                className={this.state.password == "" ? ("textBoxFieldRequired") : ("textBoxField")}
                                 name="password"
                                 type="text"
                                 value={this.state.password}
@@ -134,7 +134,7 @@ class Login extends Component {
                         <div className="loginField">
                             Email<br/>
                             <input
-                                className="textBoxField"
+                                className={this.state.email == "" ? ("textBoxFieldRequired") : ("textBoxField")}
                                 name="email"
                                 type="email"
                                 value={this.state.email}

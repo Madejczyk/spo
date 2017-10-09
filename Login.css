@@ -23,6 +23,18 @@ body {
     border: 1px solid darkgray;
 }
 
+.headerLoginForm{
+    font-size: 16px;
+    padding: 10px;
+}
+
+.contentLoginForm{
+    padding: 20px;
+}
+
+.loginField{
+    margin: 10px 0;
+}
 
 #loginSubmit, .headerLoginForm{
 
@@ -30,22 +42,18 @@ body {
     color: white;
 }
 
-.textBoxField{
-    border: 1px solid #b4b4b4;
+.textBoxFieldRequired, .textBoxField{
     border-radius: 3px;
     width: 100%;
 }
-.headerLoginForm{
-    font-size: 16px;
-    padding: 10px;
+
+.textBoxFieldRequired{
+    border: 1px solid red;
 }
 
-.contentLoginForm{
-   padding: 20px;
-}
+.textBoxField{
+    border: 1px solid #b4b4b4;
 
-.loginField{
-    margin: 10px 0;
 }
 
 .footerLoginForm, .required, .belowField, a{
